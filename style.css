@@ -1,0 +1,12 @@
+body {
+  margin: 20px;
+}
+
+h1 {
+  color: blue;
+}
+
+form {
+  border: red;
+  color: red;
+}
