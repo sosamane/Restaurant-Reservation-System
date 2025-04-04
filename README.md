@@ -2,8 +2,8 @@
 
 This is a SD project for a restaurant reservation system for LSBU.
 
-Run python manage.py runsever
+Run python manage.py runserver
 
 localhost:8000/reserve
 
-This is the viewpoint of the main reservation application
+This is the viewpoint of the main restaurant reservation application
