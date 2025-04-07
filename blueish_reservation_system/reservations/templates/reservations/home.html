@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Welcome to Blueish Restaurant
+    </title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .logo img {
+            max-width: 160px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="/BlueishRestaurantLogo.jpg" alt="Blueish Logo" class="fade-in">
+        </div>
+
+        <h1>Welcome to Blueish Restaurant</h1>
+        <p>Welcome to Blueish Restaurant's booking system!</p>
+        <p>We hope you enjoy the experience!</p>
+        
+        <a href="{% url 'make_reservation' %}" class="btn">Make a Reservation</a>
+        <a href="{% url 'lookup_reservations' %}" class="btn">Find My Booking</a>
+    </div>
+</body>
+</html>
