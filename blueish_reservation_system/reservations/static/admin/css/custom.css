@@ -1,0 +1,28 @@
+/* Change login background */
+body.login {
+    background: #f2f9ff;
+}
+
+/* Style header */
+#header {
+    background-color: #007bff;
+}
+
+#header h1 a {
+    color: white !important;
+}
+
+/* Center login box */
+.login .form-row {
+    text-align: center;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2 {
+    letter-spacing: -0.5px;
+  }
+  a.button {
+    text-decoration: none;
+  }

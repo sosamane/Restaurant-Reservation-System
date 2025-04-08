@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Make a Reservation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        form {
+            background: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .field-block {
+            margin-bottom: 18px;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+        }
+        .home-btn {
+            text-decoration: none;
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .home-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="\static\admin\img\BlueishRestaurantLogo.jpg" alt="Blueish Logo">
+    </div>
+
+    <div style="text-align: center;">
+        <a href="/reservations/" class="home-btn">🏠 Home</a>
+    </div>
+
+    <h1>Book a Table at Blueish Restaurant</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="field-block">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="field-error">
+                        {{ field.errors|striptags }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Book Now!</button>
+    </form>
+
+    <script>
+        const dateInput = document.getElementById("id_date");
+        const timeInput = document.getElementById("id_time");
+        const guestInput = document.getElementById("id_qty_people");
+        const tableSelect = document.getElementById("id_TableNumber");
+
+        function fetchAvailableTables() {
+            const date = dateInput.value;
+            const time = timeInput.value;
+            const guests = guestInput.value;
+
+            if (date && time && guests) {
+                const url = `/reservations/api/available-tables/?date=${date}&time=${time}&guests=${guests}`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        tableSelect.innerHTML = "";
+                        if (data.available_tables.length === 0) {
+                            const option = document.createElement("option");
+                            option.text = "No tables available";
+                            option.disabled = true;
+                            tableSelect.appendChild(option);
+                        } else {
+                            data.available_tables.forEach(table => {
+                                const option = document.createElement("option");
+                                option.value = table.id;
+                                option.text = `Table ${table.TableNumber} (Seats ${table.SeatCapacity})`;
+                                tableSelect.appendChild(option);
+                            });
+                        }
+                    })
+                    .catch(error => console.error("Error fetching tables:", error));
+            }
+        }
+
+        dateInput.addEventListener("change", fetchAvailableTables);
+        timeInput.addEventListener("change", fetchAvailableTables);
+        guestInput.addEventListener("input", fetchAvailableTables);
+    </script>
+</body>
+</html>

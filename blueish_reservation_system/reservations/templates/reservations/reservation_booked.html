@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Reservation Confirmed
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf7ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .confirmation-box {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.15);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .confirmation-box img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .confirmation-box h2 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .confirmation-box p {
+            font-size: 16px;
+            color: #444;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .home-btn {
+            text-decoration: none;
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .home-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <img src="\static\admin\img\BlueishRestaurantLogo.jpg" alt="Blueish Logo">
+
+        <div style="text-align: center;">
+            <a href="/reservations/" class="home-btn">🏠 Home</a>
+        </div>
+
+        <h2>Reservation Confirmed!</h2>
+        <p>Thank you for booking with <strong>Blueish Restaurant</strong>.<br>
+        We've reserved your table and sent a confirmation to your email.</p>
+    </div>
+</body>
+</html>
