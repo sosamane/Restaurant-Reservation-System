@@ -1,105 +1,148 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+
     <title>Welcome to Blueish Restaurant</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #f5f5f5;
-        }
-        .container {
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-        }
-        .logo-container img {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #007bff;
-            margin-bottom: 15px;
-        }
-        p {
-            color: #555;
-            margin-bottom: 30px;
-        }
-        .buttons {
-            display: flex;
-            gap: 20px;
-        }
-        .btn {
-            padding: 12px 20px;
-            border-radius: 6px;
-            color: white;
-            background-color: #007bff;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .home-btn {
-            background-color: #6c757d;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .home-btn:hover {
-            background-color: #5a6268;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- ✅ Fixed static logo path -->
-        <div class="logo-container">
-            <img src="\static\admin\img\BlueishRestaurantLogo.jpg" alt="Blueish Logo">
-        </div>
+  </head>
 
-        <!-- ✅ Working Home link -->
-        <a href="{% url 'home' %}" class="home-btn">🏠 Home</a>
+      <!-- 
+    <a href="{% url 'home' %}" class="home-btn">🏠 Home</a>
 
-        <h1>Welcome to Blueish Restaurant</h1>
-        <p>Welcome to Blueish Restaurant's booking system!<br>We hope you enjoy the experience!</p>
+    <h1>Welcome to Blueish Restaurant</h1>
+    <p>
+      Welcome to Blueish Restaurant's booking system!<br />We hope you enjoy
+      the experience!
+    </p>
+    -->
 
-        <!-- ✅ Corrected reservation paths -->
-        <div class="buttons">
-            <a href="{% url 'make_reservation' %}" class="btn">Make a Reservation</a>
-            <a href="{% url 'lookup_reservations' %}" class="btn">Find My Booking</a>
-        </div>
+    <header>
+        <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                <a href="https://flowbite.com" class="flex items-center">
+                    <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Blueish Restaurant</span>
+                </a>
+                <div class="flex items-center lg:order-2">
+                    <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Admin</a>
+                    <a href="#" class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">Get started</a>
+                    <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                        <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+                <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+                    <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                        <li>
+                            <a href="#" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'make_reservation' %}"  class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Make a Reservation</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lookup_reservations' %}"  class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Find My Booking</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-        <!-- 🌍 Location section -->
-<div style="margin-top: 50px; text-align: center;">
-    <h2 style="color: #007bff;">📍 Find Us at London South Bank University</h2>
-    <p style="color: #555; margin-bottom: 20px;">Come visit Blueish Restaurant at the heart of LSBU – right where good food meets great vibes!</p>
-    
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8354530103807!2d-0.1019925!3d51.497887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604a03afbd695%3A0xffaf0ef7e5c357e4!2sLondon%20South%20Bank%20University!5e0!3m2!1sen!2suk!4v1744114337667!5m2!1sen!2suk" 
-        width="100%" 
-        height="400" 
-        style="border: 4px solid #007bff; border-radius: 12px;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-</div>
 
+
+    <section class="bg-white dark:bg-gray-900">
+      <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+          <div class="mr-auto place-self-center lg:col-span-7">
+              <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Blueish Restaurant Reservation</h1>
+              <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Reserve your table today and experience exceptional dining at your convenience.</p>
+              <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                Make a Reservation
+            </a> 
+              <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                  Find My Booking
+              </a> 
+          </div>
+          <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+              <img src="https://en.wikipedia.org/wiki/Restaurant#/media/File:Barbieri_-_ViaSophia25668.jpg" alt="mockup">
+          </div>                
+      </div>
+  </section>
+
+
+      <!-- ✅ Corrected reservation paths -->
+      <div class="buttons">
+        <a href="{% url 'make_reservation' %}" class="btn"
+          >Make a Reservation</a
+        >
+        <a href="{% url 'lookup_reservations' %}" class="btn"
+          >Find My Booking</a
+        >
+      </div>
+
+      <!-- 🌍 Location section -->
+      <div style="margin-top: 50px; text-align: center">
+        <h2 style="color: #007bff">
+          📍 Find Us at London South Bank University
+        </h2>
+        <p style="color: #555; margin-bottom: 20px">
+          Come visit Blueish Restaurant at the heart of LSBU – right where good
+          food meets great vibes!
+        </p>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8354530103807!2d-0.1019925!3d51.497887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604a03afbd695%3A0xffaf0ef7e5c357e4!2sLondon%20South%20Bank%20University!5e0!3m2!1sen!2suk!4v1744114337667!5m2!1sen!2suk"
+          width="100%"
+          height="400"
+          style="border: 4px solid #007bff; border-radius: 12px"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
+      </div>
     </div>
-</body>
+
+    <div class="relative h-60 w-full">
+      <!-- Demo content -->
+      <div
+        class="overflow-y-auto relative h-full w-full overflow-y-scroll pe-2"
+      >
+        <div class="flex w-full flex-col gap-4">
+          <div class="mb-4 flex items-center gap-4">
+            <div class="skeleton h-16 w-16 rounded-full"></div>
+            <div class="flex flex-col gap-4">
+              <div class="skeleton h-4 w-52"></div>
+              <div class="skeleton h-4 w-52"></div>
+            </div>
+          </div>
+          <div class="skeleton mb-4 h-16 w-full"></div>
+          <div class="skeleton mb-4 h-32 w-full"></div>
+        </div>
+        <!-- Sticky Footer -->
+        <footer
+          class="footer bg-base-200 absolute -bottom-px sticky start-0 w-full px-6 py-4"
+        >
+          <aside class="grid-flow-col items-center">
+            <p>
+              &copy;2024
+              <a class="link link-hover font-medium" href="#"
+                >Blueish Restaurant</a
+              >
+            </p>
+          </aside>
+          <nav
+            class="text-base-content grid-flow-col gap-4 md:place-self-center md:justify-self-end"
+          >
+            <a class="link link-hover" href="#">License</a>
+            <a class="link link-hover" href="#">Help</a>
+            <a class="link link-hover" href="#">Contact</a>
+            <a class="link link-hover" href="#">Policy</a>
+          </nav>
+        </footer>
+      </div>
+    </div>
+  </body>
 </html>

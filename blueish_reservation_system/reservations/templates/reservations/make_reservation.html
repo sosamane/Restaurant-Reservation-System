@@ -1,146 +1,240 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Make a Reservation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 40px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        form {
-            background: white;
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
-        label {
-            display: block;
-            margin: 12px 0 6px;
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-        button {
-            margin-top: 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 16px;
-            width: 100%;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .field-block {
-            margin-bottom: 18px;
-        }
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .logo-container img {
-            max-width: 180px;
-            height: auto;
-        }
-        .home-btn {
-            text-decoration: none;
-            background-color: #6c757d;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 6px;
-            display: inline-block;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .home-btn:hover {
-            background-color: #5a6268;
-        }
-    </style>
-</head>
-<body>
-    <div class="logo-container">
-        <img src="\static\admin\img\BlueishRestaurantLogo.jpg" alt="Blueish Logo">
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="bg-gray-50 dark:bg-gray-900">
+      <div
+        class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+      >
+        <a
+          href="/reservations/"
+          class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+        >
+          <img
+            class="w-8 h-8 mr-2"
+            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+            alt="logo"
+          />
+          Blueish
+        </a>
+        <div
+          class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1
+              class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+            >
+              Make a Reservation
+            </h1>
 
-    <div style="text-align: center;">
-        <a href="/reservations/" class="home-btn">🏠 Home</a>
-    </div>
+            <form method="post" class="space-y-4 md:space-y-6">
+              {% csrf_token %}
 
-    <h1>Book a Table at Blueish Restaurant</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {% for field in form %}
-            <div class="field-block">
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }}
-                {% if field.errors %}
-                    <div class="field-error">
-                        {{ field.errors|striptags }}
-                    </div>
+              <div>
+                <label
+                  for="{{ form.name.id_for_label }}"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  {{ form.name.label }}
+                </label>
+                <input
+                  type="text"
+                  name="{{ form.name.html_name }}"
+                  id="{{ form.name.id_for_label }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value="{{ form.name.value|default:'' }}"
+                />
+                {% if form.name.errors %}
+                <div class="text-sm text-red-500 mt-1">
+                  {{ form.name.errors|striptags }}
+                </div>
                 {% endif %}
-            </div>
-        {% endfor %}
+              </div>
 
-        <button type="submit">Book Now!</button>
-    </form>
+              <div>
+                <label
+                  for="{{ form.phonenumber.id_for_label }}"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  {{ form.phonenumber.label }}
+                </label>
+                <input
+                  type="tel"
+                  name="{{ form.phonenumber.html_name }}"
+                  id="{{ form.phonenumber.id_for_label }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value="{{ form.phonenumber.value|default:'' }}"
+                />
+                {% if form.phonenumber.errors %}
+                <div class="text-sm text-red-500 mt-1">
+                  {{ form.phonenumber.errors|striptags }}
+                </div>
+                {% endif %}
+              </div>
+
+              <div>
+                <label
+                  for="{{ form.email.id_for_label }}"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  {{ form.email.label }}
+                </label>
+                <input
+                  type="email"
+                  name="{{ form.email.html_name }}"
+                  id="{{ form.email.id_for_label }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value="{{ form.email.value|default:'' }}"
+                />
+                {% if form.email.errors %}
+                <div class="text-sm text-red-500 mt-1">
+                  {{ form.email.errors|striptags }}
+                </div>
+                {% endif %}
+              </div>
+
+              <div>
+                <label
+                  for="{{ form.date.id_for_label }}"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  {{ form.date.label }}
+                </label>
+                <input
+                  type="date"
+                  name="{{ form.date.html_name }}"
+                  id="{{ form.date.id_for_label }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value="{{ form.date.value|default:'' }}"
+                />
+                {% if form.date.errors %}
+                <div class="text-sm text-red-500 mt-1">
+                  {{ form.date.errors|striptags }}
+                </div>
+                {% endif %}
+              </div>
+
+              <div>
+                <label
+                  for="{{ form.time.id_for_label }}"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  {{ form.time.label }}
+                </label>
+                <input
+                  type="time"
+                  name="{{ form.time.html_name }}"
+                  id="{{ form.time.id_for_label }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value="{{ form.time.value|default:'' }}"
+                />
+                {% if form.time.errors %}
+                <div class="text-sm text-red-500 mt-1">
+                  {{ form.time.errors|striptags }}
+                </div>
+                {% endif %}
+              </div>
+
+              <div>
+                <label
+                  for="{{ form.qty_people.id_for_label }}"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  {{ form.qty_people.label }}
+                </label>
+                <input
+                  type="number"
+                  name="{{ form.qty_people.html_name }}"
+                  id="{{ form.qty_people.id_for_label }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value="{{ form.qty_people.value|default:'' }}"
+                />
+                {% if form.qty_people.errors %}
+                <div class="text-sm text-red-500 mt-1">
+                  {{ form.qty_people.errors|striptags }}
+                </div>
+                {% endif %}
+              </div>
+
+              <div>
+                <label
+                  for="{{ form.TableNumber.id_for_label }}"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  {{ form.TableNumber.label }}
+                </label>
+                <input
+                  type="text"
+                  name="{{ form.TableNumber.html_name }}"
+                  id="{{ form.TableNumber.id_for_label }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value="{{ form.TableNumber.value|default:'' }}"
+                />
+                {% if form.TableNumber.errors %}
+                <div class="text-sm text-red-500 mt-1">
+                  {{ form.TableNumber.errors|striptags }}
+                </div>
+                {% endif %}
+              </div>
+
+              <button
+                type="submit"
+                class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >
+                Book Now!
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script>
-        const dateInput = document.getElementById("id_date");
-        const timeInput = document.getElementById("id_time");
-        const guestInput = document.getElementById("id_qty_people");
-        const tableSelect = document.getElementById("id_TableNumber");
+      const dateInput = document.getElementById("id_date");
+      const timeInput = document.getElementById("id_time");
+      const guestInput = document.getElementById("id_qty_people");
+      const tableSelect = document.getElementById("id_TableNumber");
 
-        function fetchAvailableTables() {
-            const date = dateInput.value;
-            const time = timeInput.value;
-            const guests = guestInput.value;
+      function fetchAvailableTables() {
+        const date = dateInput.value;
+        const time = timeInput.value;
+        const guests = guestInput.value;
 
-            if (date && time && guests) {
-                const url = `/reservations/api/available-tables/?date=${date}&time=${time}&guests=${guests}`;
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        tableSelect.innerHTML = "";
-                        if (data.available_tables.length === 0) {
-                            const option = document.createElement("option");
-                            option.text = "No tables available";
-                            option.disabled = true;
-                            tableSelect.appendChild(option);
-                        } else {
-                            data.available_tables.forEach(table => {
-                                const option = document.createElement("option");
-                                option.value = table.id;
-                                option.text = `Table ${table.TableNumber} (Seats ${table.SeatCapacity})`;
-                                tableSelect.appendChild(option);
-                            });
-                        }
-                    })
-                    .catch(error => console.error("Error fetching tables:", error));
-            }
+        if (date && time && guests) {
+          const url = `/reservations/api/available-tables/?date=${date}&time=${time}&guests=${guests}`;
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              tableSelect.innerHTML = "";
+              if (data.available_tables.length === 0) {
+                const option = document.createElement("option");
+                option.text = "No tables available";
+                option.disabled = true;
+                tableSelect.appendChild(option);
+              } else {
+                data.available_tables.forEach((table) => {
+                  const option = document.createElement("option");
+                  option.value = table.id;
+                  option.text = `Table ${table.TableNumber} (Seats ${table.SeatCapacity})`;
+                  tableSelect.appendChild(option);
+                });
+              }
+            })
+            .catch((error) => console.error("Error fetching tables:", error));
         }
+      }
 
-        dateInput.addEventListener("change", fetchAvailableTables);
-        timeInput.addEventListener("change", fetchAvailableTables);
-        guestInput.addEventListener("input", fetchAvailableTables);
+      dateInput.addEventListener("change", fetchAvailableTables);
+      timeInput.addEventListener("change", fetchAvailableTables);
+      guestInput.addEventListener("input", fetchAvailableTables);
     </script>
-</body>
+  </body>
 </html>
