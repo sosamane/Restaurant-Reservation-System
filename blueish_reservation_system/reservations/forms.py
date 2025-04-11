@@ -2,6 +2,7 @@ from django import forms
 from .models import Reservation
 import re
 import datetime
+from datetime import date
 
 class ReservationForm(forms.ModelForm):
     class Meta:
@@ -36,9 +37,9 @@ class ReservationForm(forms.ModelForm):
         if not re.match(r'^\d{11}$', number):
             raise forms.ValidationError("Phone number must be 11 digits.")
         return number
-
+    
     def clean_date(self):
         date = self.cleaned_data['date']
-        if date < datetime.today().date():
+        if date < date.today():
             raise forms.ValidationError("You can't book for a past date.")
         return date

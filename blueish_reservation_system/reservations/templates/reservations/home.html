@@ -21,8 +21,8 @@
     <header>
         <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-                <a href="https://flowbite.com" class="flex items-center">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+                <a href="https://www.Blueish.com" class="flex items-center">
+                    <img src="logo.png" class="mr-3 h-6 sm:h-9" alt="Blueish Logo" />
                     <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Blueish Restaurant</span>
                 </a>
                 <div class="flex items-center lg:order-2">
@@ -66,44 +66,40 @@
               </a> 
           </div>
           <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-              <img src="https://en.wikipedia.org/wiki/Restaurant#/media/File:Barbieri_-_ViaSophia25668.jpg" alt="mockup">
+              <img src="https://en.wikipedia.org/wiki/Restaurant#/media/File:Barbieri_-_ViaSophia25668.jpg" alt="Restaurant Picture">
           </div>                
       </div>
   </section>
 
 
-      <!-- ✅ Corrected reservation paths -->
-      <div class="buttons">
-        <a href="{% url 'make_reservation' %}" class="btn"
-          >Make a Reservation</a
-        >
-        <a href="{% url 'lookup_reservations' %}" class="btn"
-          >Find My Booking</a
-        >
-      </div>
 
-      <!-- 🌍 Location section -->
-      <div style="margin-top: 50px; text-align: center">
-        <h2 style="color: #007bff">
+    <!-- 🌍 Location section -->
+<section class="bg-gray-50 dark:bg-gray-900 py-8">
+  <div class="w-full max-w-md mx-auto px-6">
+    <div class="bg-white rounded-lg shadow dark:border dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h2 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
           📍 Find Us at London South Bank University
         </h2>
-        <p style="color: #555; margin-bottom: 20px">
-          Come visit Blueish Restaurant at the heart of LSBU – right where good
-          food meets great vibes!
+        <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
+          Come visit Blueish Restaurant at the heart of LSBU – right where good food meets great vibes!
         </p>
-
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8354530103807!2d-0.1019925!3d51.497887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604a03afbd695%3A0xffaf0ef7e5c357e4!2sLondon%20South%20Bank%20University!5e0!3m2!1sen!2suk!4v1744114337667!5m2!1sen!2suk"
-          width="100%"
-          height="400"
-          style="border: 4px solid #007bff; border-radius: 12px"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        >
-        </iframe>
+        <div class="w-full mt-4">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.8354530103807!2d-0.1019925!3d51.497887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604a03afbd695%3A0xffaf0ef7e5c357e4!2sLondon%20South%20Bank%20University!5e0!3m2!1sen!2suk!4v1744114337667!5m2!1sen!2suk"
+            width="100%"
+            height="300"
+            class="border-2 border-primary-600 rounded-lg dark:border-primary-500"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
 
     <div class="relative h-60 w-full">
       <!-- Demo content -->

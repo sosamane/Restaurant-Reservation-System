@@ -9,71 +9,6 @@
     />
   </head>
   <body>
-    <div class="container">
-      <!-- 🔥 Logo at the top -->
-      <div class="logo-container">
-        <img src="\BlueishRestaurantLogo.jpg" alt="Blueish Restaurant Logo" />
-      </div>
-
-      <div style="text-align: center">
-        <a href="/reservations/" class="home-btn">Home 🏠</a>
-      </div>
-
-      <h2>Find My Bookings</h2>
-
-      {% if messages %}
-      <div class="success-message">
-        {% for message in messages %}
-        <p>{{ message }}</p>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      <form method="post">
-        {% csrf_token %}
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          value="{{ email_query }}"
-          required
-        />
-        <button type="submit">Search</button>
-      </form>
-
-      {% if reservations %}
-      <h3>Upcoming Reservations</h3>
-      {% for r in reservations %}
-      <div class="booking">
-        <strong>Date:</strong> {{ r.date }}<br />
-        <strong>Time:</strong> {{ r.time }}<br />
-        <strong>Guests:</strong> {{ r.qty_people }}<br />
-        <strong>Table:</strong> {{ r.TableNumber }}<br />
-
-        <form method="post" style="margin-top: 10px">
-          {% csrf_token %}
-          <input type="hidden" name="email" value="{{ email_query }}" />
-          <input type="hidden" name="cancel_id" value="{{ r.id }}" />
-          <button
-            type="submit"
-            style="
-              background-color: #dc3545;
-              color: white;
-              border: none;
-              padding: 8px 12px;
-              border-radius: 6px;
-              cursor: pointer;
-            "
-          >
-            Cancel Booking
-          </button>
-        </form>
-      </div>
-      {% endfor %} {% elif email_query %}
-      <p>No upcoming reservations found for this email.</p>
-      {% endif %}
-    </div>
-
     <section class="bg-gray-50 dark:bg-gray-900">
       <div
         class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
@@ -82,11 +17,7 @@
           href="/reservations/"
           class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img
-            class="w-12 h-12 mr-2"
-            src="\BlueishRestaurantLogo.jpg"
-            alt="Blueish Restaurant Logo"
-          />
+          <img class="w-12 h-12 mr-2" src="logo.png" alt="Logo" />
           Blueish Restaurant
         </a>
 
@@ -131,7 +62,7 @@
               </div>
               <button
                 type="submit"
-                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                class="w-full text-blue-400 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 Search
               </button>
